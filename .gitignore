@@ -1,0 +1,15 @@
+.idea
+__pycache__/
+.mypy_cache/
+media
+houses/123.py
+venv/
+ws/test.py
+.env
+static/
+ws/ws.log
+*.log
+gunicorn_start.sh
+nezha/tests.py
+celerybeat-schedule.*
+test.py
