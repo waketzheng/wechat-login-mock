@@ -13,3 +13,4 @@ gunicorn_start.sh
 nezha/tests.py
 celerybeat-schedule.*
 test.py
+db.sqlite3
