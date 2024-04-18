@@ -13,12 +13,20 @@ from pathlib import Path
 PORT = 9999
 
 
-def run_silently(cmd):
+def run_silently(cmd: str) -> str:
     with os.popen(cmd) as p:
         return p.read().strip()
 
 
-def main():
+def is_venv() -> bool:
+    """Whether in a virtual environment(also work for poetry)"""
+    return hasattr(sys, "real_prefix") or (
+        hasattr(sys, "base_prefix") and sys.base_prefix != sys.prefix
+    )
+
+
+def main() -> None:
+    opt_daemon = "--daemon"
     if sys.argv[1:]:
         try:
             port = int(sys.argv[1])
@@ -42,10 +50,11 @@ def main():
             cmd += " --reload"
         c = input("Start as daemon? [Y/n] ").strip()
         if c.lower() != "n":
-            cmd += " --daemon"
-    cmd = cmd.replace("poetry run ", "")
+            cmd += " " + opt_daemon
+    if is_venv():
+        cmd = cmd.replace("poetry run ", "")
     print("-->", cmd)
-    if os.system(cmd) == 0:
+    if os.system(cmd) == 0 and opt_daemon in cmd:
         print("Waiting for server starting ...")
         check = "ps -ef|grep {}".format(port)
         if Path(__file__).resolve().parent.name not in run_silently(check):
@@ -54,7 +63,7 @@ def main():
             if d.strip().lower() == "n":
                 print("Exit!")
                 sys.exit()
-            cmd = cmd.replace("--daemon", "")
+            cmd = cmd.replace(opt_daemon, "")
             print("-->", cmd)
             os.system(cmd)
         else:
