@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "wechat-login-mock"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-djangorestframework = "^3.15.1"
+djangorestframework = "^3.15.2"
 gunicorn = "^22.0.0"
 
 [build-system]
