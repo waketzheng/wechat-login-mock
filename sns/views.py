@@ -1,7 +1,6 @@
 from django.shortcuts import redirect
-
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from common.utils import random_string
 
@@ -14,7 +13,7 @@ class Oauth2AccessTokenView(APIView):
             "expires_in": 7200,
             "refresh_token": random_string(100),
             "openid": random_string(28),
-            "scope": "SCOPE"
+            "scope": "SCOPE",
         }
         return Response(data)
 
@@ -30,8 +29,8 @@ class UserInfoView(APIView):
             "city": "深圳",
             "country": "中国",
             "headimgurl": "http://thirdwx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaF"
-                          "qAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/46",
-            "privilege": []
+            "qAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/46",
+            "privilege": [],
         }
         return Response(data)
 
