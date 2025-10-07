@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [tool.poetry.group.dev.dependencies]
-fast-dev-cli = "0.18.0"
+fast-dev-cli = "0.18.5"
 
 [build-system]
 requires = ["poetry-core>=2.0.0"]
